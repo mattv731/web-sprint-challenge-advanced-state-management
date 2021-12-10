@@ -36,11 +36,18 @@ export default function reducer (state = initialState, action) {
                 error: action.payload
             })
         case(ADD_SMURF):
-            return({
+                const newSmurf = {
+                    id: Date.now,
+                    name: action.payload.name,
+                    position: action.payload.position,
+                    nickname: action.payload.nickname,
+                    description: action.payload.description
+                }
+                return({
                 ...state,
-                smurf: [...state.smurfs, action.payload],
+                smurfs: [...state.smurfs, newSmurf],
                 loading: false,
-                error: state.error
+                error: ''
             })
         case(ADD_ERROR):
             return({

@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { addError, addSmurf } from '../actions';
 
-const AddForm = (props) => {
+const AddForm = ({smurfs, error, addError, addSmurf}) => {
     const [state, setState] = useState({
         name:"",
         position:"",
         nickname:"",
         description:""
     });
-
-    //remove when error state is added
-    const errorMessage = "";
+    console.log(smurfs)
 
     const handleChange = e => {
         setState({
@@ -22,10 +20,11 @@ const AddForm = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        console.log(state)
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            //dispatch a custom error action
+            addError("Fill out all the tables silly 🦢")
         } else {
-            //dispatch an addSmurf action
+                addSmurf({name: `${state.name}`, position: `${state.position}`, nickname: `${state.nickname}`, description: `${state.description}`})
         }
     }
 
@@ -49,7 +48,7 @@ const AddForm = (props) => {
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
             {
-                errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {errorMessage}</div>
+                error && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {error}</div>
             }
             <button>Submit Smurf</button>
         </form>
@@ -58,7 +57,13 @@ const AddForm = (props) => {
 
 const mapStateToProps = state => {
     return {
-        smurfs: state.smurfs,
+        smurfs: {
+            id: state.smurfs.id,
+            name: state.smurfs.name,
+            position: state.smurfs.position,
+            nickname: state.smurfs.nickname,
+            description: state.smurfs.description
+            },
         loading: state.loading,
         error: state.error
       }

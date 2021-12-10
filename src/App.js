@@ -13,7 +13,7 @@ const App = ({fetchSmurf})=> {
 
 useEffect(() => {
   fetchSmurf()
-}, [])
+},[])
 
   return (
     <div className="App">

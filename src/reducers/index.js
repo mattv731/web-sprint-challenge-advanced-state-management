@@ -1,8 +1,23 @@
+import { FETCH_SMURF } from '../actions/index';
 
 export const initialState = {
+    smurfs: [],
+    loading: false,
+    error: ''
 }
 
-const reducer = ()=>{
+const reducer = (state = initialState, action)=>{
+    switch(action.type) {
+        case(FETCH_SMURF):
+            return({
+                ...state,
+                smurfs: [],
+                loading: true,
+                error: ''
+            })
+        default:
+            return state;
+    }
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//

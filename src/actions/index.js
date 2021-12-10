@@ -7,14 +7,12 @@ export const ADD_SMURF = 'ADD_SMURF'
 export const ADD_ERROR = 'ADD_ERROR'
 
 
-export const fetchSmurfs = () => {
+export const fetchSmurf = () => {
     return(dispatch) => {
         dispatch({type: FETCH_SMURF})
         axios.get('http://localhost:3333/smurfs')
         .then(resp => {
-            resp.data.map(item => {
-                dispatch({type: FETCH_SUCCESS, payload: item})
-            })
+                dispatch({type: FETCH_SUCCESS, payload: resp.data})
         })
         .catch(err => {
             dispatch({type: FETCH_FAIL, payload: err})

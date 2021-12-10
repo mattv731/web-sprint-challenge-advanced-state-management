@@ -1,37 +1,37 @@
 import { FETCH_SMURF, FETCH_SUCCESS, FETCH_FAIL, ADD_SMURF, ADD_ERROR } from '../actions/index';
 
-export const initialState = {
+const initialState = {
     smurfs: [{
-        id:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-        name:'Poppa Smurf',
-        position:'Village Leader',
-        nickname: 'Pops',
-        description: 'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.'
+        id:"9999",
+        name:'Test Smurf',
+        position:'Villager',
+        nickname: 'Sam',
+        description: 'This is Sam'
       }],
     loading: false,
     error: ''
 }
 
-const reducer = (state = initialState, action)=>{
+export default function reducer (state = initialState, action) {
     switch(action.type) {
         case(FETCH_SMURF):
             return({
                 ...state,
-                smurfs: [],
+                smurfs: state.smurfs,
                 loading: true,
-                error: ''
+                error: state.error
             })
         case(FETCH_SUCCESS):
             return({
                 ...state,
-                smurfs: this.state,
+                smurfs: state.smurfs,
                 loading: false,
-                error: ''
+                error: state.error
             })
         case(FETCH_FAIL):
             return({
                 ...state,
-                smurfs: [],
+                smurfs: state.smurfs,
                 loading: false,
                 error: action.payload
             })
@@ -40,12 +40,12 @@ const reducer = (state = initialState, action)=>{
                 ...state,
                 smurf: [...state.smurfs, action.payload],
                 loading: false,
-                error: ''
+                error: state.error
             })
         case(ADD_ERROR):
             return({
                 ...state,
-                smurfs: [],
+                smurfs: state.smurfs,
                 loading: false,
                 error: [...state.error, action.payload]
             })
@@ -55,7 +55,7 @@ const reducer = (state = initialState, action)=>{
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
-export default reducer;
+
 
 //Task List:
 //1. Adds the following state values into the initialState:

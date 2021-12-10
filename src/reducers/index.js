@@ -24,7 +24,7 @@ export default function reducer (state = initialState, action) {
         case(FETCH_SUCCESS):
             return({
                 ...state,
-                smurfs: state.smurfs,
+                smurfs: action.payload,
                 loading: false,
                 error: state.error
             })

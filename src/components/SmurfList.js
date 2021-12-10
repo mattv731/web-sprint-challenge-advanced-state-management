@@ -6,14 +6,15 @@ import { connect } from "react-redux";
  const SmurfList = ({ smurfs, loading, error })=> {
     const isLoading = loading;
     const testSmurf = smurfs
-    console.log(smurfs)
 
     if (isLoading) {
         return <h1>Loading...</h1>;
     }
 
     return(<div className="listContainer">
-        <Smurf smurf={testSmurf}/>
+        {testSmurf.map(item => {
+            return <Smurf smurf={item}/>
+        })}
     </div>);
 }
 

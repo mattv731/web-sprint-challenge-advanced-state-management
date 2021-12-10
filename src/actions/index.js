@@ -24,7 +24,7 @@ export const addSmurf = (smurf) => {
     return({type: ADD_SMURF, payload: smurf})
 }
 
-export const AddError = (error) => {
+export const addError = (error) => {
     return({type: ADD_ERROR, payload: error})
 }
 //Task List:

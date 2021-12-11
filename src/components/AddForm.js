@@ -9,7 +9,6 @@ const AddForm = ({smurfs, error, addError, addSmurf}) => {
         nickname:"",
         description:""
     });
-    console.log(smurfs)
 
     const handleChange = e => {
         setState({
@@ -20,11 +19,16 @@ const AddForm = ({smurfs, error, addError, addSmurf}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(state)
         if (state.name === "" || state.position === "" || state.nickname === "") {
             addError("Fill out all the tables silly 🦢")
         } else {
                 addSmurf({name: `${state.name}`, position: `${state.position}`, nickname: `${state.nickname}`, description: `${state.description}`})
+                setState({
+                    name:"",
+                    position:"",
+                    nickname:"",
+                    description:""
+                });
         }
     }
 
@@ -57,13 +61,7 @@ const AddForm = ({smurfs, error, addError, addSmurf}) => {
 
 const mapStateToProps = state => {
     return {
-        smurfs: {
-            id: state.smurfs.id,
-            name: state.smurfs.name,
-            position: state.smurfs.position,
-            nickname: state.smurfs.nickname,
-            description: state.smurfs.description
-            },
+        smurfs: state.smurfs,
         loading: state.loading,
         error: state.error
       }

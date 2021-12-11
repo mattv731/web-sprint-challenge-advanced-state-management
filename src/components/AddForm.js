@@ -22,7 +22,12 @@ const AddForm = ({smurfs, error, addError, addSmurf}) => {
         if (state.name === "" || state.position === "" || state.nickname === "") {
             addError("Fill out all the tables silly 🦢")
         } else {
-                addSmurf({name: `${state.name}`, position: `${state.position}`, nickname: `${state.nickname}`, description: `${state.description}`})
+                addSmurf({
+                    name: `${state.name}`,
+                    position: `${state.position}`,
+                    nickname: `${state.nickname}`,
+                    description: `${state.description}`
+                })
                 setState({
                     name:"",
                     position:"",
